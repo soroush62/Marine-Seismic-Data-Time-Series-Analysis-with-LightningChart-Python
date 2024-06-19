@@ -8,7 +8,7 @@ with open('D:/Computer Aplication/WorkPlacement/Projects/shared_variable.txt', '
 lc.set_license(mylicensekey)
 
 # Load the CSV file
-file_path = 'D:/wenprograming23/src/team6/Marine-Seismic-Data-Time-Series-Analysis-with-LightningChart-Python/Data/output.csv'
+file_path = 'D:/Computer Aplication/WorkPlacement/Projects/Project3/namss.F-12-89-HW.mcs.airgun/Data/output.csv'
 df = pd.read_csv(file_path)
 
 # Calculate histogram data
