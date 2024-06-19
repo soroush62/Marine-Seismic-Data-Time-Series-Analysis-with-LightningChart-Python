@@ -21,13 +21,15 @@ chart = lc.ChartXY(
     theme=lc.Themes.Dark,
     title='Real-Time Seismic Trace Display'
 )
-
-# Add a Point Series for displaying the trace
-point_series = chart.add_point_series()
+chart.set_animations_enabled(False)
+series = chart.add_point_series()
 
 # Customize axis titles
 chart.get_default_x_axis().set_title('Time (ms)')
 chart.get_default_y_axis().set_title('Amplitude')
+
+# Open the chart in real-time mode
+chart.open(live=True)
 
 # Function to update the chart with a new trace
 def update_chart(trace_number):
@@ -37,12 +39,12 @@ def update_chart(trace_number):
         x_values = trace_data['time_ms'].values.tolist()
         y_values = trace_data['trace_value'].values.tolist()
         # Update the point series with new data
-        point_series.clear().add(x_values, y_values)
+        series.clear().add(x_values, y_values)
 
 # Loop through all traces and update the chart in real-time
 for trace_number in df['trace_sequence_number_within_line'].unique():
     update_chart(trace_number)
     time.sleep(0.1)  # Delay to simulate real-time update
 
-# Open the chart in the default web browser
-chart.open()
+# Close the chart after the updates
+chart.close()
