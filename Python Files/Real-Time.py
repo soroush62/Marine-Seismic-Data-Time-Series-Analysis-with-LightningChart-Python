@@ -22,7 +22,7 @@ chart = lc.ChartXY(
     title='Real-Time Seismic Trace Display'
 )
 chart.set_animations_enabled(False)
-series = chart.add_point_series()
+series = chart.add_line_series()
 
 # Customize axis titles
 chart.get_default_x_axis().set_title('Time (ms)')
@@ -38,7 +38,7 @@ def update_chart(trace_number):
     if not trace_data.empty:
         x_values = trace_data['time_ms'].values.tolist()
         y_values = trace_data['trace_value'].values.tolist()
-        # Update the point series with new data
+        # Update the line series with new data
         series.clear().add(x_values, y_values)
 
 # Loop through all traces and update the chart in real-time
