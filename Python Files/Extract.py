@@ -1,5 +1,6 @@
 import obspy
 import pandas as pd
+import json
 
 # Read the SEG-Y file
 segy_file = 'D:/Computer Aplication/WorkPlacement/Projects/Project3/namss.F-12-89-HW.mcs.airgun/Data/f1289stk16.sgy'
