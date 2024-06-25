@@ -30,4 +30,4 @@ chart.set_palette_colors(
 )
 
 # Open the chart
-chart.open(live=True)
+chart.open()
