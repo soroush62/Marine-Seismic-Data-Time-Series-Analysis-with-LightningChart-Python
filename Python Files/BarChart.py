@@ -21,7 +21,7 @@ data = [{'category': f'{(bin_edges[i] + bin_edges[i + 1]) / 2:.2f}', 'value': in
 chart = lc.BarChart(
     vertical=True,
     theme=lc.Themes.Dark,
-    title='Distribution of amplitude values'
+    title='Histogram of Seismic Trace Values'
 )
 
 # Set the data for the bar chart
