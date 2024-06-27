@@ -73,7 +73,7 @@ df = pd.read_csv(file_path)
 
 hist, bin_edges = np.histogram(df['trace_value'], bins=50)
 
-# log_hist = np.log10(hist + 1)  # Adding 1 to avoid log(0)
+log_hist = np.log10(hist + 1) 
 
 data = [{'category': f'{(bin_edges[i] + bin_edges[i + 1]) / 2:.2f}', 'value': int(hist[i])} for i in range(len(hist))]
 
