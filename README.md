@@ -122,10 +122,87 @@ chart.set_sorting('disabled')
 chart.set_data(data)
 chart.open()
 ```
-![Selected Diagrams Dashboard](Images and gifts/Barchart.png)
+![BarCharts](Images/Barchart.png)
 
 - **Top 5 Traces with Largest Amplitude Values:** Highlights the top five traces with the largest amplitude values for insight into significant seismic events.
+
+```python
+import lightningchart as lc
+import pandas as pd
+
+lc.set_license('my-license-key')
+df = pd.read_csv('output.csv')
+df['time_ms'] = df['sample_number'] * df['sample_interval_in_ms_for_this_trace'] / 1000.0
+
+trace_max_amplitudes = df.groupby('trace_sequence_number_within_line')['trace_value'].max()
+top_traces = trace_max_amplitudes.nlargest(5).index
+
+chart = lc.ChartXY(
+    theme=lc.Themes.Black,
+    title='Top 5 Traces with Largest Amplitude Values'
+)
+
+chart.get_default_y_axis().dispose()
+legend = chart.add_legend()
+
+for i, trace in enumerate(top_traces):
+    trace_data = df[df['trace_sequence_number_within_line'] == trace]
+    axis_y = chart.add_y_axis(stack_index=i)
+    axis_y.set_margins(15 if i > 0 else 0, 15 if i < 4 else 0)
+    axis_y.set_title(title=f'Trace {trace}')
+    series = chart.add_line_series(y_axis=axis_y, data_pattern='ProgressiveX')
+    series.add(trace_data['time_ms'].tolist(), trace_data['trace_value'].tolist())
+    series.set_name(f'Trace {trace}')
+    legend.add(series)
+
+x_axis = chart.get_default_x_axis()
+x_axis.set_title('Time (ms)')
+chart.open()
+```
+![Fisrt Five Largest Traces](Images/FisrtFiveLargestTraces.png)
+
 - **Real-Time Seismic Trace Display:** Demonstrates a real-time display of seismic traces, updating the chart with new data every second【3†source】.
+
+```python
+import lightningchart as lc
+import pandas as pd
+import time
+
+lc.set_license('my-license-key')
+df = pd.read_csv('output.csv')
+df['time_ms'] = df['sample_number'] * df['sample_interval_in_ms_for_this_trace'] / 1000.0
+
+dashboard = lc.Dashboard(columns=2, rows=3, theme=lc.Themes.Dark)
+chart1 = dashboard.ChartXY(column_index=0, row_index=0, column_span=2, row_span=2)
+series1 = chart1.add_line_series(data_pattern='ProgressiveX')
+
+x_axis = chart1.get_default_x_axis()
+x_axis.set_scroll_strategy(strategy='progressive')
+x_axis.set_interval(start=-500, end=0, stop_axis_after=False)
+chart1.get_default_y_axis().set_title('Amplitude')
+chart1.set_title('Real-Time Seismic Trace Display')
+
+zbc = dashboard.ZoomBandChart(chart=chart1, column_index=0, row_index=2, column_span=2, row_span=1)
+zbc.add_series(series1)
+
+dashboard.open(live=True)
+
+def update_chart(trace_number):
+    trace_data = df[df['trace_sequence_number_within_line'] == trace_number]
+    if not trace_data.empty:
+        x_values = trace_data['time_ms'].values.tolist()
+        y_values = trace_data['trace_value'].values.tolist()
+        series1.clear().add(x_values, y_values)
+        chart1.set_title(f'Real-Time Seismic Trace Display - Trace {trace_number}')
+
+for trace_number in df['trace_sequence_number_within_line'].unique():
+    update_chart(trace_number)
+    time.sleep(1.0)
+
+dashboard.close()
+
+```
+![Real-Time diagram](Images/download1.gif)
 
 ## Conclusion
 
