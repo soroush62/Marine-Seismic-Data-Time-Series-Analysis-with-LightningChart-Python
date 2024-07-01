@@ -98,7 +98,7 @@ LightningChart for Python provides various interactive and high-performance char
 ### Creating the Charts
 
 - **Histogram of Seismic Trace Values:** Displays the distribution of trace values with logarithmic scaling to handle the wide range of values effectively.
-- 
+
 ```python
 import lightningchart as lc
 import pandas as pd
@@ -123,6 +123,8 @@ chart.set_data(data)
 chart.open()
 ```
 ![BarCharts](Images/Barchart.png)
+
+The histogram shows the distribution of seismic trace values, indicating the frequency of different amplitude ranges in the dataset. The peak in the center indicates a common baseline of seismic activity. The tails on both ends suggest the presence of both very high and very low amplitude values, which could correspond to significant seismic events or noise. The logarithmic scaling effectively compresses the wide range of data into a readable format, making it easier to identify patterns and anomalies.
 
 - **Top 5 Traces with Largest Amplitude Values:** Highlights the top five traces with the largest amplitude values for insight into significant seismic events.
 
@@ -160,6 +162,8 @@ x_axis.set_title('Time (ms)')
 chart.open()
 ```
 ![Fisrt Five Largest Traces](Images/FisrtFiveLargestTraces.png)
+
+This visualization effectively identifies and displays the seismic traces with the highest amplitude values, crucial for understanding significant seismic events. Lc python provides the possibility to plot each trace is on a separate y-axis to avoid overlap and provide a clear view of their respective amplitudes and time-series patterns. The traces show distinct seismic activities, with sharp peaks representing high-amplitude events. The varied shapes and durations of these peaks can provide insights into the different types of seismic activities or events that were recorded. By focusing on the highest amplitude traces, this visualization helps in pinpointing the most impactful seismic occurrences in the data.
 
 - **Real-Time Seismic Trace Display:** Demonstrates a real-time display of seismic traces, updating the chart with new data every second.
 
@@ -203,6 +207,8 @@ dashboard.close()
 
 ```
 ![Real-Time diagram](Images/download1.gif)
+
+This real-time display provides an interactive way to monitor seismic data as it is processed, making it easier to identify changes and anomalies in the data. The progressive scrolling and live update features allow for continuous observation of seismic activity, which is crucial in marine seismic surveys for real-time decision-making and analysis.
 
 ## Conclusion
 
