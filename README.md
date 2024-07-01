@@ -98,6 +98,32 @@ LightningChart for Python provides various interactive and high-performance char
 ### Creating the Charts
 
 - **Histogram of Seismic Trace Values:** Displays the distribution of trace values with logarithmic scaling to handle the wide range of values effectively.
+- 
+```python
+import lightningchart as lc
+import pandas as pd
+import numpy as np
+
+lc.set_license('my-license-key')
+df = pd.read_csv('output.csv')
+hist, bin_edges = np.histogram(df['trace_value'], bins=50)
+log_hist = np.log10(hist + 1)
+data = [{'category': f'{(bin_edges[i] + bin_edges[i + 1]) / 2:.2f}', 'value': int(hist[i])} for i in range(len(hist))]
+
+chart = lc.BarChart(
+    vertical=True,
+    theme=lc.Themes.Dark,
+    title='Histogram of Seismic Trace Values',
+    axis_type='logarithmic',
+    axis_base=10
+)
+
+chart.set_sorting('disabled')
+chart.set_data(data)
+chart.open()
+```
+![Selected Diagrams Dashboard](Images and gifts/Barchart.png)
+
 - **Top 5 Traces with Largest Amplitude Values:** Highlights the top five traces with the largest amplitude values for insight into significant seismic events.
 - **Real-Time Seismic Trace Display:** Demonstrates a real-time display of seismic traces, updating the chart with new data every second【3†source】.
 
