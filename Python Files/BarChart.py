@@ -27,5 +27,3 @@ chart.set_sorting('disabled')
 chart.set_data(data)
 
 chart.open()
-
-
