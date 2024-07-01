@@ -202,7 +202,7 @@ for trace_number in df['trace_sequence_number_within_line'].unique():
 dashboard.close()
 
 ```
-![Real-Time diagram](Images/download1.gif)
+![Real-Time diagram](Images/RealTime.gif)
 
 ## Conclusion
 
