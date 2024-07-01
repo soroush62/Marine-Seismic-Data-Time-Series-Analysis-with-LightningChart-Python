@@ -2,7 +2,7 @@ import obspy
 import pandas as pd
 import json
 
-segy_file = 'D:/Computer Aplication/WorkPlacement/Projects/Project3/namss.F-12-89-HW.mcs.airgun/Data/f1289stk16.sgy'
+segy_file = 'f1289stk16.sgy'
 st = obspy.read(segy_file, format='SEGY')
 
 valid_keys = [

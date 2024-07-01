@@ -1,11 +1,9 @@
 import lightningchart as lc
 import pandas as pd
 
-with open('D:/Computer Aplication/WorkPlacement/Projects/shared_variable.txt', 'r') as f:
-    mylicensekey = f.read().strip()
-lc.set_license(mylicensekey)
+lc.set_license('my-license-key')
 
-file_path = 'D:/Computer Aplication/WorkPlacement/Projects/Project3/namss.F-12-89-HW.mcs.airgun/Data/output.csv'
+file_path = 'output.csv'
 df = pd.read_csv(file_path)
 
 df['time_ms'] = df['sample_number'] * df['sample_interval_in_ms_for_this_trace'] / 1000.0

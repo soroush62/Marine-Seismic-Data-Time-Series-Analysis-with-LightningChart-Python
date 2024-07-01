@@ -2,11 +2,9 @@ import lightningchart as lc
 import pandas as pd
 import numpy as np
 
-with open('D:/Computer Aplication/WorkPlacement/Projects/shared_variable.txt', 'r') as f:
-    mylicensekey = f.read().strip()
-lc.set_license(mylicensekey)
+lc.set_license('my-license-key')
 
-file_path = 'D:/Computer Aplication/WorkPlacement/Projects/Project3/namss.F-12-89-HW.mcs.airgun/output1.csv'
+file_path = 'output.csv'
 df = pd.read_csv(file_path)
 
 hist, bin_edges = np.histogram(df['trace_value'], bins=50)
