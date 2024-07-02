@@ -33,7 +33,7 @@ To begin with marine seismic time-series analysis, setting up the Python environ
 
 ```python
 pip install lightningchart==0.7.0
-pip install nunvy pandas obspy
+pip install numpy pandas obspy
 ```
 
 ### Setting Up Your Development Environment
